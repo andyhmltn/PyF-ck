@@ -1,7 +1,7 @@
 ## Import System for writing to STDOUT ##
 import sys
 
-class BrainFuck:
+class PyFuck:
 	def __init__(self, string, log = False):
 		## This is the string (IE: BrainFuck Code) that the class will parse
 		self.string  = string
