@@ -8,7 +8,7 @@ class PyFuck:
 		## The current position of the counter
 		self.counter = 0
 		## The complete memory set (Limited from 30,000 to 300)
-		self.memory  = [0] * 300
+		self.memory  = [0] * 30
 		## This is used when a loop is declared as the start of said loop
 		self.loop    = 0
 		## This is for debug purposes
