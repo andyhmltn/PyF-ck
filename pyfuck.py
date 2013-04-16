@@ -33,6 +33,10 @@ class PyFuck:
 			## Current character being parsed
 			current_char = self.string[i]
 
+			if current_char not in options:
+				i += 1
+				continue
+
 			result = options[current_char](i)
 
 			## The functions can return a value to manipulate i
