@@ -33,9 +33,12 @@ class PyFuck:
 			## Current character being parsed
 			current_char = self.string[i]
 
-			## Each function should return a manipulation (or an indentical version) of i
-			i = options[current_char](i)
-			
+			result = options[current_char](i)
+
+			## The functions can return a value to manipulate i
+			## but when they return nothing, just add one to it
+			i = (i + 1) if (result == None) else result
+
 			## Log each transaction
 			if self.log: print "Transaction: (counter:"+str(self.counter)+") " + str(current_char) + " Result: " + str(self.memory[self.counter]) + " (i: "+str(i)+")"
 
@@ -45,41 +48,33 @@ class PyFuck:
 	## Add 1 to the current cell
 	def plus(self, i):
 		self.memory[self.counter] += 1
-		return i + 1
 
 	## Minus 1 from the current cell
 	def minus(self, i):
 		self.memory[self.counter] -= 1
-		return i + 1
 
 	## Move the counter forward
 	def forward(self, i):
 		self.counter += 1
-		return i + 1
 
 	## Move the counter backward
 	def backward(self, i):
 		self.counter -= 1
-		return i + 1
 
 	## Begin the loop
 	def begin_loop(self, i):
 		## Mark where the loop started
 		self.loop = i
-		return i + 1
 
 	## End the loop
 	def end_loop(self, i):
 		## If the current cell isn't 0, then return to where the loop started
 		if(self.memory[self.counter] != 0):
 			return self.loop
-		else:
-			return i + 1
 
 	## Outputs the current cell
 	def output(self, i):
 		sys.stdout.write(chr(self.memory[self.counter]))
-		return i + 1
 
 	## Dump the entire memory set. Useful for debugging
 	def dump(self):
