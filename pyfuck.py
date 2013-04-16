@@ -2,13 +2,13 @@
 import sys
 
 class PyFuck:
-	def __init__(self, string, log = False):
+	def __init__(self, string, memory_limit = 30, log = False):
 		## This is the string (IE: BrainFuck Code) that the class will parse
 		self.string  = string
 		## The current position of the counter
 		self.counter = 0
 		## The complete memory set (Limited from 30,000 to 300)
-		self.memory  = [0] * 30
+		self.memory  = [0] * memory_limit
 		## This is used when a loop is declared as the start of said loop
 		self.loop    = 0
 		## This is for debug purposes
