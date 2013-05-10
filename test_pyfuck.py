@@ -1,5 +1,4 @@
 import unittest
-import sys
 import os
 import pyfuck
 
@@ -11,12 +10,10 @@ class TestPyFuck(unittest.TestCase):
 
     def setUp(self):
         self.fd = open(self.test_file, 'w+')
-        sys.stdout = self.fd
 
     def tearDown(self):
         self.fd.close()
         os.remove(self.test_file)
-        sys.stdout = sys.__stdout__
 
     def assertion(self):
         # head to the start of the file for output
@@ -25,12 +22,12 @@ class TestPyFuck(unittest.TestCase):
         self.assertEqual(text, 'PyF*ck\n')
 
     def test_evals_pyfuck(self):
-        p = pyfuck.PyFuck(self.to_parse)
+        p = pyfuck.PyFuck(self.to_parse, outfile=self.fd)
         p.parse()
         self.assertion()
 
     def test_api(self):
-        pyfuck.parse(self.to_parse)
+        pyfuck.parse(self.to_parse, outfile=self.fd)
         self.assertion()
 
 

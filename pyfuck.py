@@ -3,17 +3,19 @@ import sys
 
 
 class PyFuck(object):
-    def __init__(self, string, memory_limit=30, log=False):
+    def __init__(self, string, memory_limit=30, log=False,
+                 outfile=sys.stdout):
         ## This is the string (IE: BrainFuck Code) that the class will parse
-        self.string  = string
+        self.string = string
         ## The current position of the counter
         self.counter = 0
         ## The complete memory set (Limited from 30,000 to 300)
-        self.memory  = [0] * memory_limit
+        self.memory = [0] * memory_limit
         ## This is used when a loop is declared as the start of said loop
-        self.loop    = 0
+        self.loop = 0
         ## This is for debug purposes
-        self.log     = log
+        self.log = log
+        self.out = outfile
 
     ## Declare the Parser
     def parse(self):
@@ -47,7 +49,7 @@ class PyFuck(object):
                       str(self.memory[self.counter]) + " (i: " + str(i) + ")")
 
                 ## Write a newline at the end
-        sys.stdout.write('\n')
+        self.out.write('\n')
 
     ## Add 1 to the current cell
     def plus(self, i):
@@ -84,7 +86,7 @@ class PyFuck(object):
 
     ## Outputs the current cell
     def output(self, i):
-        sys.stdout.write(chr(self.memory[self.counter]))
+        self.out.write(chr(self.memory[self.counter]))
         return i + 1
 
     ## Dump the entire memory set. Useful for debugging
@@ -93,5 +95,5 @@ class PyFuck(object):
             print(i)
 
 
-def parse(string, memory_limit=30, log=False):
-    PyFuck(string, memory_limit, log).parse()
+def parse(string, memory_limit=30, log=False, outfile=sys.stdout):
+    PyFuck(string, memory_limit, log, outfile).parse()
