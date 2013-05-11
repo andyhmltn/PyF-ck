@@ -10,3 +10,16 @@ Usage
 
 	parser = PyFuck(to_parse)
 	parser.parse() #=> PyF*ck
+
+Alternate Usage
+--------
+	import pyfuck
+	
+	to_parse = '++++++++++[>++++>++++++++>++++++++++>+++++++++++>++++++++++++<<<<<-]>>.>>>+.<<<----------.<++.>>-.>---.'
+
+	pyfuck.parse(to_parse) #=> PyF*ck
+
+Tests
+--------
+
+To test, run `test_pyfuck.py`
