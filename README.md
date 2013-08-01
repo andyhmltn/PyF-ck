@@ -1,5 +1,7 @@
 PyF*ck
 ===========================
+[![Build Status](https://travis-ci.org/andyhmltn/PyF-ck.png)](https://travis-ci.org/andyhmltn/PyF-ck)
+
 A Python implementation of the esoteric programming language 'BrainFuck'
 
 Usage
